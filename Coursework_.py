@@ -1,3 +1,4 @@
 a = 6
 b = 5
-print(a - b)
+c = 10
+print(a - b + c)
