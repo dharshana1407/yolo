@@ -5,3 +5,6 @@ camera = train_idxs['camId']
 print(camera.ravel())
 print(camera.shape)    
 #yollo
+import json
+with open('feature_data.json', 'r') as f:
+    features = json.load(f)
