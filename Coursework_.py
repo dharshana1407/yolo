@@ -33,9 +33,12 @@ print(features.shape)
 new_gallery = ([])
 
 for i in range(len(gallery_id)):
+    in_query = False
     for j in range(len(query_id)):
         if((labels[gallery_id[i]] == labels[query_id[j]]) and (camera[gallery_id[i]] == camera[query_id[j]])):
-            new_gallery.append(gallery_id[i])
+            in_query = True
+    if(in_query == False): 
+        new_gallery.append(gallery_id[i])
     
 new_gallery = np.asarray(new_gallery)
 print(new_gallery.shape)
