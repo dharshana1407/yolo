@@ -30,16 +30,22 @@ with open('feature_data.json', 'r') as f:
 features = np.asarray(features)
 print(features.shape)
 
-new_gallery = ([])
+gallery_length = len(gallery_id)
+query_length = len(query_id)
+rank_list = np.zeros((gallery_length, query_length))
+
+
 total_accuracy = 0
 
 for j in range(len(query_id)):
 
-    new_gallery = ([])
+    new_gallery = ([]) 
+    k = 0
 
     for i in range(len(gallery_id)):
             if(not((labels[gallery_id[i]-1] == labels[query_id[j]-1]) and (camera[gallery_id[i]-1] == camera[query_id[j]-1]))):
                 new_gallery.append(gallery_id[i]-1)
+                k = k + 1
     
     new_gallery = np.asarray(new_gallery)
     classifier = KNN(n_neighbors=1)
@@ -48,36 +54,7 @@ for j in range(len(query_id)):
     reshaped_query = features[query_id[j]-1].reshape(1,-1)
     y_pred = classifier.predict(reshaped_query)
     total_accuracy = total_accuracy + metrics.accuracy_score(labels[query_id[j]-1].reshape(1,-1), y_pred)
+    rank_list[0:k,j] = new_gallery
     print(j)
-
 print("final accuracy: ", total_accuracy/len(query_id))
-
-
-'''
-for i in range(len(gallery_id)):
-    in_query = False
-    for j in range(len(query_id)):
-        if((labels[gallery_id[i]] == labels[query_id[j]]) and (camera[gallery_id[i]] == camera[query_id[j]])):
-            in_query = True
-    if(in_query == False): 
-        new_gallery.append(gallery_id[i])
-    
-new_gallery = np.asarray(new_gallery)
-print(new_gallery.shape)
-accuracy = 0
-classifier = KNN(n_neighbors=1)
-pred = ([[]])
-for i in range (len(query_id)):
-    classifier.fit(features[new_gallery-1], labels[new_gallery-1].ravel())
-    query = np.asarray(features[query_id[i]-1])
-    y_pred = classifier.predict(query.reshape(1,-1))
-    pred = np.append(pred, y_pred)
-    print(pred.shape)
-    #accuracy = accuracy + metrics.accuracy_score(labels[query_id[i]-1],y_pred)
-
-print(y_pred.shape)
-print(pred.shape)
-print("Accuracy:",metrics.accuracy_score(labels[query_id-1],pred))
-
-'''
 
