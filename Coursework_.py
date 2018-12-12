@@ -54,7 +54,6 @@ total_accuracy = 0
 topone = 0
 topfive = 0
 topten = 0
-<<<<<<< HEAD
 
 start_time = time.time()
 
@@ -138,44 +137,8 @@ for i in range(len(training_data)):
 
 
 
-'''
-K MEANS ATTEMPT
-km = KMeans(n_clusters=2, random_state=0).fit(features[gallery_id-1])
-
-km = np.asarray(km.labels_)
-
-km_1 = (gallery_id-1)[np.where(km == 0)]
-km_2 = (gallery_id-1)[np.where(km == 1)]
-
-km_1 = np.asarray(km_1)
-km_2 = np.asarray(km_2)
 
 
-print(len(gallery_id-1))
-print("km_1:", km_1.shape)
-print("km_2:", km_2.shape)
-'''
-
-#KNN FUNCTION
-
-def knn(gallery_id, query_id, labels, camera):
-    distance_metric = 'cosine'
-    classifier = NN(algorithm = 'auto', n_neighbors=10, metric= distance_metric)
-
-    for j in range(len(query_id)):
-        print(j)
-        rank_list = ([])
-        k = 0
-
-        for i in range(len(gallery_id)):
-            if(not((labels[gallery_id[i]-1] == labels[query_id[j]-1]) and (camera[gallery_id[i]-1] == camera[query_id[j]-1]))):
-                rank_list.append(gallery_id[i]-1)
-        
-        rank_list = np.asarray(rank_list)
-
-        classifier.fit(features[rank_list])
-        ind = classifier.kneighbors(X=features[query_id[j]-1].reshape(1,-1), n_neighbors=10, return_distance=False)
-=======
 
 c = 0
 j = 0
@@ -329,7 +292,6 @@ print(acc)
 classifier = NN(n_neighbors=10, metric='euclidean')
 start_time = time.time()
 for j in range(len(query_id)):
->>>>>>> 5bf07cbff39a343b5828d9b0de8efe6bce9d7108
 
         if labels[query_id[j]-1] == labels[rank_list[ind[0,0]]]:
             topone = topone + 1
@@ -354,6 +316,23 @@ print("final accuracy for top 10: ", topten/len(query_id))
 #print("final accuracy for top 1: ", total_accuracy/len(query_id))
 end_time = time.time()
 print("Computation Time: %s seconds" % (end_time - start_time))
+'''
+'''
+K MEANS ATTEMPT PALLAVI
+km = KMeans(n_clusters=2, random_state=0).fit(features[gallery_id-1])
+
+km = np.asarray(km.labels_)
+
+km_1 = (gallery_id-1)[np.where(km == 0)]
+km_2 = (gallery_id-1)[np.where(km == 1)]
+
+km_1 = np.asarray(km_1)
+km_2 = np.asarray(km_2)
+
+
+print(len(gallery_id-1))
+print("km_1:", km_1.shape)
+print("km_2:", km_2.shape)
 '''
 
 
