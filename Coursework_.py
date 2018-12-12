@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt  
 from sklearn.neighbors import NearestNeighbors as NN
 from sklearn import metrics
-<<<<<<< HEAD
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.cluster import KMeans
 import time
@@ -12,9 +11,7 @@ from scipy.spatial import distance
 from sklearn.decomposition import PCA
 import pandas as pd
 from numpy import linalg as LA
-
 import scipy.io as spio
-from numpy import linalg as LA
 from sklearn.preprocessing import normalize
 import seaborn as sn
 import itertools
