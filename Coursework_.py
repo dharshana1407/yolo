@@ -135,11 +135,6 @@ for i in range(len(training_data)):
 #todo for mahalanobis- use distance to find closest 
 
 
-
-
-
-
-
 c = 0
 j = 0
 
